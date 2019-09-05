@@ -88,6 +88,69 @@ const data = [
   }
 ];
 
+
+function ArticleComponent (title, date, first, second, third) {
+  const articleDiv = document.createElement('div');
+  articleDiv.classList.add('article');
+
+  const titleElem = document.createElement('h2');
+  titleElem.textContent = title;
+  articleDiv.appendChild(titleElem);
+
+  const dateElem = document.createElement('p');
+  dateElem.classList.add('date');
+  dateElem.textContent = date;
+  articleDiv.appendChild(dateElem);
+
+  const content1 = document.createElement('p');
+  content1.textContent = first;
+  articleDiv.appendChild(content1);
+
+  const content2 = document.createElement('p');
+  content2.textContent = second;
+  articleDiv.appendChild(content2);
+
+  const content3 = document.createElement('p');
+  content3.textContent = third;
+  articleDiv.appendChild(content3);
+
+  const expand = document.createElement('span');
+  expand.classList.add('expandButton');
+  expand.addEventListener('click', (e) => {
+    articleDiv.classList.toggle("article-open");
+  });
+  expand.textContent = "View Article";
+  articleDiv.appendChild(expand);
+
+  return articleDiv;
+}
+
+const newArticle = 
+{
+  title: 'An Article I Added All By Myself',
+  date: 'Jan 5th, 1984',
+  firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+        hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+        Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+  secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+        hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+        hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+        hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+  thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+        Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+        Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+}
+
+data.push(newArticle);
+
+let articlesParent = document.querySelector(".articles");
+
+data.forEach(item => {
+  articlesParent.appendChild(ArticleComponent(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph));
+})
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
